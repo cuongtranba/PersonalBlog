@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "PersonalBlog"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-PersonalBlog-f4f04417-ab75-4f16-82af-da7f3dbfa641;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
