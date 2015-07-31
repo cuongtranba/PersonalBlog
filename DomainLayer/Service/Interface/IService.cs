@@ -8,12 +8,12 @@ namespace DomainLayer.Service
 
     public interface IDeletable<T>
     {
-        void Delete(T existing);
+        void Delete(T model);
     }
 
     public interface IUpdatable<T>
     {
-        void Update(T existing);
+        void Update(T model);
     }
 
     public interface IRetrievable<T>

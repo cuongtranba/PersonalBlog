@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
@@ -9,37 +10,42 @@ using DAL.Entities;
 
 namespace DomainLayer.Service
 {
-    public abstract class BaseService<TModel, TEntities> where TEntities : IDbSet<TModel> where TModel : class
+    public abstract class BaseService<TModel> where TModel : class
     {
-        protected TEntities Entities { get; set; }
-        protected DbContext Db { get; set; }
+        protected DbContext DbContext;
+        protected DbSet<TModel> DbSet => DbContext.Set<TModel>();
 
 
-        protected BaseService(DbContext db, TEntities entities)
+        protected BaseService(DbContext dbContext)
         {
-            Db = db;
-            Entities = entities;
+            this.DbContext = dbContext;
         }
 
         public virtual TModel Create()
         {
-            return Entities.Create();
+            return DbSet.Create();
         }
 
         public virtual TModel Retrieve(params object[] keys)
         {
-            return Entities.Find(keys);
+            return DbSet.Find(keys);
         }
 
-        public virtual void Update(TModel existing)
+        public virtual void Update(TModel model)
         {
-            Db.Entry(existing).State = EntityState.Modified;
+            DbContext.Entry(model).State=EntityState.Modified;
         }
 
-        public virtual void Delete(TModel existing)
+        public virtual void Delete(TModel model)
         {
-            Db.Entry(existing).State = EntityState.Deleted;
+            DbContext.Entry(model).State=EntityState.Deleted;
         }
+
+        public List<TModel> GetAll(Expression<Func<TModel, bool>> predicate,bool isTracking=true)
+        {
+            return isTracking? DbSet.Where(predicate).ToList(): DbSet.Where(predicate).AsNoTracking().ToList();
+        }
+
 
     }
 }
