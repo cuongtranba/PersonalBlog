@@ -1,0 +1,12 @@
+﻿@model Web.Models.CategoryModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create","Category",FormMethod.Post))
+{
+    @Html.TextBoxFor(m=>m.Name);
+    @Html.TextBoxFor(m => m.Description);
+    <input type="submit" name="name" value="OK" />
+}
