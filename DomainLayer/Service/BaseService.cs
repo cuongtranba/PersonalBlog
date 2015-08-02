@@ -26,6 +26,11 @@ namespace DomainLayer.Service
             return DbSet.Create();
         }
 
+        public virtual void Create( TModel model )
+        {
+            DbSet.Add(model);
+        }
+
         public virtual TModel Retrieve(params object[] keys)
         {
             return DbSet.Find(keys);

@@ -8,5 +8,10 @@ namespace Web.Models
         public string UrlSlug { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime DateTime { get; set; }
+
+        protected BaseModel()
+        {
+            DateTime=DateTime.Now;
+        }
     }
 }

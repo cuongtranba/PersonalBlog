@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using DAL.Entities;
 using Web.Models;
 using DomainLayer;
 using DomainLayer.Service;
@@ -13,7 +15,7 @@ namespace Web.Controllers
 {
     public class CategoryController : BaseController
     {
-        private ICategoryService categoryService;
+        private readonly ICategoryService categoryService;
         public CategoryController(DbContext dbContext, ICategoryService categoryService) : base(dbContext)
         {
             this.categoryService = categoryService;
@@ -33,6 +35,8 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(CategoryModel model)
         {
+            var a= Mapper.Map(model, new Category());
+            categoryService.Create(a);
             return View();
         }
 

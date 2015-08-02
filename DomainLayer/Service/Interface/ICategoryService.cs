@@ -7,8 +7,8 @@ using DAL.Entities;
 
 namespace DomainLayer.Service.Interface
 {
-    public interface ICategoryService:IService<Category>
+    public interface ICategoryService : IService<Category>
     {
-
+        void Create(Category a);
     }
 }
