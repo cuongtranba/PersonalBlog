@@ -49,8 +49,11 @@
         <div class="row">
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
-                @RenderBody()
 
+                <h1 class="page-header">
+                    @ViewBag.Title
+                </h1>
+                @RenderBody()
 
             </div>
             <!-- Blog Sidebar Widgets Column -->

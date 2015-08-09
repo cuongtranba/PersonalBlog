@@ -51,10 +51,7 @@ namespace Web.Controllers
 
         public ActionResult GetPostByCategory(int id)
         {
-            var category = _categoryService.Create();
-            category.Id = id;
-            
-            return View();
+            return View(_categoryService.GetPostByCategory(id));
         }
     }
 }

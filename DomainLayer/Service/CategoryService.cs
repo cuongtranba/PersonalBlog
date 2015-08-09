@@ -15,5 +15,13 @@ namespace DomainLayer.Service
         {
 
         }
+
+        public List<Post> GetPostByCategory(int id)
+        {
+            var category = Create();
+            category.Id = id;
+            DbSet.Attach(category);
+            return category.Posts.ToList();
+        }
     }
 }

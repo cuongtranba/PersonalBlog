@@ -103,11 +103,13 @@
   <ItemGroup>
     <Compile Include="BlogContext.cs" />
     <Compile Include="Config\CategoryConfiguration.cs" />
+    <Compile Include="Config\ImageConfiguration.cs" />
     <Compile Include="Config\PostConfiguration.cs" />
     <Compile Include="Config\TagEntityConfiguration.cs" />
     <Compile Include="Config\UserEntityConfiguration.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
@@ -115,6 +117,10 @@
     <Compile Include="Migrations\201508061357534_init database.cs" />
     <Compile Include="Migrations\201508061357534_init database.Designer.cs">
       <DependentUpon>201508061357534_init database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508091749242_fix configs.cs" />
+    <Compile Include="Migrations\201508091749242_fix configs.Designer.cs">
+      <DependentUpon>201508091749242_fix configs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,6 +132,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201508061357534_init database.resx">
       <DependentUpon>201508061357534_init database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508091749242_fix configs.resx">
+      <DependentUpon>201508091749242_fix configs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

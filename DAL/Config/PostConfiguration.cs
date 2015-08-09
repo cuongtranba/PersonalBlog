@@ -24,6 +24,7 @@ namespace DAL.Config
             {
                 c.ToTable("TagPost");
             });
+            
         }
     }
 }

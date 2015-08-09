@@ -11,5 +11,6 @@ namespace DomainLayer.Service.Interface
     public interface ICategoryService : IService<Category>
     {
         void Create(Category category);
+        List<Post> GetPostByCategory(int id);
     }
 }

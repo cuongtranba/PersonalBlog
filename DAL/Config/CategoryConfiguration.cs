@@ -15,6 +15,7 @@ namespace DAL.Config
             this.Map(c => c.MapInheritedProperties());
             this.Property(c => c.Name).HasMaxLength(50);
             this.Property(c => c.Description).HasMaxLength(50);
+            this.HasMany(c => c.Posts).WithRequired(c => c.Category).HasForeignKey(c => c.CategoryId);
         }
     }
 }

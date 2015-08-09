@@ -15,6 +15,13 @@ namespace Web.Controllers
 
         }
 
+
+        public ActionResult List()
+        {
+            return View();
+        }
+
+
         public ActionResult Detail(int id)
         {
             return View();
