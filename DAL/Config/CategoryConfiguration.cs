@@ -12,7 +12,6 @@ namespace DAL.Config
     {
         public CategoryConfiguration()
         {
-            this.HasKey(c => c.Id);
             this.Map(c => c.MapInheritedProperties());
             this.Property(c => c.Name).HasMaxLength(50);
             this.Property(c => c.Description).HasMaxLength(50);

@@ -45,12 +45,14 @@ namespace DomainLayer.Service
         {
             DbContext.Entry(model).State=EntityState.Deleted;
         }
-
-        public List<TModel> GetAll(Expression<Func<TModel, bool>> predicate,bool isTracking=true)
+        public List<TModel> GetAll(Expression<Func<TModel, bool>> predicate, bool isTracking=true)
         {
             return isTracking? DbSet.Where(predicate).ToList(): DbSet.Where(predicate).AsNoTracking().ToList();
         }
 
-
+        public List<TModel> GetAll(bool isTracking = true)
+        {
+            return isTracking ? DbSet.ToList() : DbSet.AsNoTracking().ToList();
+        } 
     }
 }

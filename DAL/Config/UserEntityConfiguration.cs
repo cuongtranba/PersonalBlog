@@ -12,7 +12,6 @@ namespace DAL.Config
     {
         public UserEntityConfiguration()
         {
-            this.HasKey(c => c.Id);
             this.Map(c => c.MapInheritedProperties());
             this.Property(c => c.DateOfBirth).HasColumnType("datetime2").HasColumnName("DOB");
             this.Property(c => c.Profile).HasMaxLength(150);

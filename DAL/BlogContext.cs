@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Config;
 using DAL.Entities;
 
 namespace DAL
@@ -23,6 +24,8 @@ namespace DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //base.OnModelCreating(modelBuilder);
+
             //Configure domain classes using Fluent API here
             var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
                  .Where(type => !String.IsNullOrEmpty(type.Namespace))
@@ -33,7 +36,7 @@ namespace DAL
                 dynamic configurationInstance = Activator.CreateInstance(type);
                 modelBuilder.Configurations.Add(configurationInstance);
             }
-            base.OnModelCreating(modelBuilder);
+
         }
     }
 }

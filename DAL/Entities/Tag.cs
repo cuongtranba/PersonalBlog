@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class Tag:BaseEntity<int>
+    public class Tag:BaseEntity
     {
         public Tag()
         {

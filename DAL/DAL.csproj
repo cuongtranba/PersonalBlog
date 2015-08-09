@@ -112,9 +112,9 @@
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="IocConfig.cs" />
-    <Compile Include="Migrations\201507261250293_init db.cs" />
-    <Compile Include="Migrations\201507261250293_init db.Designer.cs">
-      <DependentUpon>201507261250293_init db.cs</DependentUpon>
+    <Compile Include="Migrations\201508061357534_init database.cs" />
+    <Compile Include="Migrations\201508061357534_init database.Designer.cs">
+      <DependentUpon>201508061357534_init database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,8 +124,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507261250293_init db.resx">
-      <DependentUpon>201507261250293_init db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508061357534_init database.resx">
+      <DependentUpon>201508061357534_init database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

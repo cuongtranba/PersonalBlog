@@ -1,0 +1,17 @@
+﻿@model List<DAL.Entities.Category>
+<div class="well">
+    <h4>Blog Categories</h4>
+    <div class="row">
+        <div class="col-lg-6">
+            <ul class="list-unstyled">
+                <li>
+                    @foreach (var category in Model)
+                    {
+                        @Html.ActionLink(category.Name, "GetPostByCategory", "Category", new {id = category.Id})
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

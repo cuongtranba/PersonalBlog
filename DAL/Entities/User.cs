@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class User:BaseEntity<int>
+    public class User:BaseEntity
     {
         public string Name { get; set; }
         public string Email { get; set; }

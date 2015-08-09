@@ -12,7 +12,6 @@ namespace DAL.Config
     {
         public PostConfiguration()
         {
-            this.HasKey(c => c.Id);
             this.Map(c => c.MapInheritedProperties());
             this.Property(c=>c.Title).HasMaxLength(50);
             this.Property(c=>c.ShortDescription).HasMaxLength(150);

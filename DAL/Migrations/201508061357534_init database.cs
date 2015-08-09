@@ -3,7 +3,7 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initdb : DbMigration
+    public partial class initdatabase : DbMigration
     {
         public override void Up()
         {
@@ -11,10 +11,10 @@ namespace DAL.Migrations
                 "dbo.Categories",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 50),
                         Description = c.String(maxLength: 50),
-                        UrlSlug = c.String(),
+                        UrlSlug = c.String(maxLength: 50),
                         IsDeleted = c.Boolean(nullable: false),
                         DateTime = c.DateTime(nullable: false),
                     })
@@ -24,7 +24,7 @@ namespace DAL.Migrations
                 "dbo.Posts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(maxLength: 50),
                         ShortDescription = c.String(maxLength: 150),
                         Description = c.String(),
@@ -32,7 +32,7 @@ namespace DAL.Migrations
                         Published = c.Boolean(nullable: false),
                         PostedOn = c.DateTime(nullable: false),
                         Modified = c.DateTime(),
-                        UrlSlug = c.String(),
+                        UrlSlug = c.String(maxLength: 50),
                         IsDeleted = c.Boolean(nullable: false),
                         DateTime = c.DateTime(nullable: false),
                         Category_Id = c.Int(),
@@ -48,10 +48,10 @@ namespace DAL.Migrations
                 "dbo.Tags",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 50),
                         Description = c.String(),
-                        UrlSlug = c.String(),
+                        UrlSlug = c.String(maxLength: 50),
                         IsDeleted = c.Boolean(nullable: false),
                         DateTime = c.DateTime(nullable: false),
                     })
@@ -61,12 +61,12 @@ namespace DAL.Migrations
                 "dbo.Users",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 50),
                         Email = c.String(maxLength: 50),
                         Profile = c.String(maxLength: 150),
                         DOB = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        UrlSlug = c.String(),
+                        UrlSlug = c.String(maxLength: 50),
                         IsDeleted = c.Boolean(nullable: false),
                         DateTime = c.DateTime(nullable: false),
                     })

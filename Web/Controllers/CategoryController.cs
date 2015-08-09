@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -10,15 +11,16 @@ using Web.Models;
 using DomainLayer;
 using DomainLayer.Service;
 using DomainLayer.Service.Interface;
+using Microsoft.Ajax.Utilities;
 
 namespace Web.Controllers
 {
     public class CategoryController : BaseController
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoryService _categoryService;
         public CategoryController(DbContext dbContext, ICategoryService categoryService) : base(dbContext)
         {
-            this.categoryService = categoryService;
+            this._categoryService = categoryService;
         }
 
         // GET: Category
@@ -35,11 +37,24 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(CategoryModel model)
         {
-            var a= Mapper.Map(model, new Category());
-            categoryService.Create(a);
+            var newCategory= Mapper.Map(model, new Category());
+            _categoryService.Create(newCategory);
             return View();
         }
 
-       
+        [ChildActionOnly]
+        public ActionResult GetCategoies()
+        {
+            var categoies = _categoryService.GetAll(false);
+            return PartialView("GetCategoies",categoies);
+        }
+
+        public ActionResult GetPostByCategory(int id)
+        {
+            var category = _categoryService.Create();
+            category.Id = id;
+            
+            return View();
+        }
     }
 }

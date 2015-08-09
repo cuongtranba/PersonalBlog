@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Entities
 {
-    public class Post:BaseEntity<int>
+    public class Post:BaseEntity
     {
         public Post()
         {
