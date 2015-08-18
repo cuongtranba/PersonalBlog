@@ -9,6 +9,7 @@ namespace DAL.Entities
         {
             Tags=new List<Tag>();
             Images=new List<Image>();
+            Comments=new List<Comment>();
         }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
@@ -19,10 +20,11 @@ namespace DAL.Entities
         public DateTime? Modified { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public IList<Tag> Tags { get; set; }
-        public IList<Image> Images { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

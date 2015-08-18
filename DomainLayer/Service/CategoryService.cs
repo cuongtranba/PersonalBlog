@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities;
@@ -18,10 +19,10 @@ namespace DomainLayer.Service
 
         public List<Post> GetPostByCategory(int id)
         {
-            var category = Create();
-            category.Id = id;
-            DbSet.Attach(category);
-            return category.Posts.ToList();
+            var category = DbSet.AsNoTracking().Include(p => p.Posts.Select(c=>c.User)).FirstOrDefault(c => c.Id == id);
+            if (category != null)
+                return category.Posts.ToList();
+            return new List<Post>();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Web.Controllers
         [ChildActionOnly]
         public ActionResult GetCategoies()
         {
-            var categoies = _categoryService.GetAll(false);
+            var categoies = _categoryService.GetAll(c=>new CategoryModel() {Name = c.Name,Id = c.Id,CountPost = c.Posts.Count});
             return PartialView("GetCategoies",categoies);
         }
 

@@ -10,6 +10,11 @@ namespace DAL.Entities
     {
         public string Name { get; set; }
         public byte[] Content { get; set; }
-        public List<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+
+        public Image()
+        {
+            Posts=new List<Post>();
+        }
     }
 }

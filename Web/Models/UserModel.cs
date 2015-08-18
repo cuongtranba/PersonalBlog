@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Web.Models
 {
-    public class UserModel:BaseModel<int>
+    public class UserModel:BaseModel
     {
         public string Name { get; set; }
         public string Email { get; set; }

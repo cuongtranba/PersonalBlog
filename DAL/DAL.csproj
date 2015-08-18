@@ -103,6 +103,8 @@
   <ItemGroup>
     <Compile Include="BlogContext.cs" />
     <Compile Include="Config\CategoryConfiguration.cs" />
+    <Compile Include="Config\CommentConfiguration.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Config\ImageConfiguration.cs" />
     <Compile Include="Config\PostConfiguration.cs" />
     <Compile Include="Config\TagEntityConfiguration.cs" />
@@ -114,13 +116,13 @@
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="IocConfig.cs" />
-    <Compile Include="Migrations\201508061357534_init database.cs" />
-    <Compile Include="Migrations\201508061357534_init database.Designer.cs">
-      <DependentUpon>201508061357534_init database.cs</DependentUpon>
+    <Compile Include="Migrations\201508171409447_init 121.cs" />
+    <Compile Include="Migrations\201508171409447_init 121.Designer.cs">
+      <DependentUpon>201508171409447_init 121.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508091749242_fix configs.cs" />
-    <Compile Include="Migrations\201508091749242_fix configs.Designer.cs">
-      <DependentUpon>201508091749242_fix configs.cs</DependentUpon>
+    <Compile Include="Migrations\201508181436195_test100.cs" />
+    <Compile Include="Migrations\201508181436195_test100.Designer.cs">
+      <DependentUpon>201508181436195_test100.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,11 +132,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508061357534_init database.resx">
-      <DependentUpon>201508061357534_init database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508171409447_init 121.resx">
+      <DependentUpon>201508171409447_init 121.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508091749242_fix configs.resx">
-      <DependentUpon>201508091749242_fix configs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508181436195_test100.resx">
+      <DependentUpon>201508181436195_test100.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

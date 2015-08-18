@@ -1,0 +1,16 @@
+﻿@model Web.Models.CommentModel
+
+
+@using (Html.BeginForm("CreateComment", "Post"))
+{
+    @Html.HiddenFor(c=>c.PostId)
+    <div class="well">
+        <h4>Leave a Comment:</h4>
+        <form role="form">
+            <div class="form-group">
+                @Html.TextAreaFor(c=>c.Content,new {@class="form-control",@rows="3"});
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+}

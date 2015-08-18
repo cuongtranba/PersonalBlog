@@ -15,7 +15,7 @@ namespace DAL.Config
             this.Map(c => c.MapInheritedProperties());
             this.Property(c=>c.Title).HasMaxLength(50);
             this.Property(c=>c.ShortDescription).HasMaxLength(150);
-            this.Property(c=>c.Description);
+            this.Property(c=>c.Description).IsMaxLength();
             this.Property(c=>c.Meta).HasMaxLength(50);
             this.Property(c=>c.Published);
             this.Property(c=>c.PostedOn);
@@ -24,7 +24,7 @@ namespace DAL.Config
             {
                 c.ToTable("TagPost");
             });
-            
+            this.HasMany(c=>c.Comments).WithRequired(c=>c.Post).HasForeignKey(c=>c.PostId).WillCascadeOnDelete(false);
         }
     }
 }

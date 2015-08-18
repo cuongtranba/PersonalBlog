@@ -8,8 +8,8 @@ using DAL.Entities;
 
 namespace DomainLayer.Service.Interface
 {
-    public interface ICategoryService : IService<Category>
+    public interface ICommentService : IService<Comment>
     {
-        List<Post> GetPostByCategory(int id);
+
     }
 }

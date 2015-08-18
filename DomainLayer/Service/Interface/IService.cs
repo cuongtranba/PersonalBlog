@@ -22,13 +22,16 @@ namespace DomainLayer.Service.Interface
 
     public interface IRetrievable<T>
     {
-        T Retrieve(params object[] keys);
-        List<T> GetAll(Expression<Func<T, bool>> predicate, bool isTracking = true);
-        List<T> GetAll(bool isTracking = true);
+        T Retrieve(int keys);
+
+        List<TResult> GetAll<TResult>(Expression<Func<T, bool>> predicate, Expression<Func<T, TResult>> selector, bool isTracking = true) where TResult : class;
+
+        List<TResult> GetAll<TResult>(Expression<Func<T, TResult>> selector, bool isTracking = true)
+            where TResult : class;
     }
 
     public interface ICreatable<T>
     {
-        T Create();
+        void Create(T model);
     }
 }

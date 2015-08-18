@@ -188,6 +188,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperBootStrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\IocConfig.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\TagModel.cs" />
@@ -278,6 +280,7 @@
     <Content Include="Views\Category\GetCategoies.cshtml" />
     <Content Include="Views\Category\GetPostByCategory.cshtml" />
     <Content Include="Views\Comment\_GetRecentComments.cshtml" />
+    <None Include="Views\Post\Comment.cshtml" />
     <None Include="Views\Post\Detail.cshtml" />
     <Content Include="Views\Post\List.cshtml" />
     <None Include="Views\Shared\_Search.cshtml" />

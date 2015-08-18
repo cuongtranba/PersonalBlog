@@ -2,7 +2,7 @@
 
 namespace Web.Models
 {
-    public class TagModel:BaseModel<int>
+    public class TagModel:BaseModel
     {
         public TagModel()
         {

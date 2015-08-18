@@ -2,7 +2,7 @@
 
 namespace Web.Models
 {
-    public class CategoryModel:BaseModel<int>
+    public class CategoryModel:BaseModel
     {
         public CategoryModel()
         {
@@ -10,6 +10,7 @@ namespace Web.Models
         }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int CountPost { get; set; }
         public IList<PostModel> Posts { get; set; }
     }
 }

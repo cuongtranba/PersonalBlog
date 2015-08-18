@@ -13,11 +13,13 @@ namespace DAL.Entities
         public string Email { get; set; }
         public string Profile { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public IList<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public User()
         {
             Posts=new List<Post>();
+            Comments=new List<Comment>();
         }
     }
 }

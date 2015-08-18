@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using DAL.Entities;
 
 namespace Web.Models
 {
-    public class PostModel:BaseModel<int>
+    public class PostModel:BaseModel
     {
         public PostModel()
         {
@@ -16,10 +17,14 @@ namespace Web.Models
         public bool Published { get; set; }
         public DateTime PostedOn { get; set; }
         public DateTime? Modified { get; set; }
+        public int CategoryId { get; set; }
+        public virtual CategoryModel Category { get; set; }
+        public virtual ICollection<TagModel> Tags { get; set; }
+        public virtual ICollection<ImageModel> Images { get; set; }
 
-        public CategoryModel Category { get; set; }
-        public IList<TagModel> Tags { get; set; }
-        public UserModel User { get; set; }
-        
+        public int UserId { get; set; }
+        public virtual UserModel User { get; set; }
+        public virtual ICollection<CommentModel> Comments { get; set; }
+
     }
 }

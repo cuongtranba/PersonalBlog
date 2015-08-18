@@ -17,7 +17,8 @@ namespace DAL.Config
             this.Property(c => c.Profile).HasMaxLength(150);
             this.Property(c => c.Name).HasMaxLength(50);
             this.Property(c => c.Email).HasMaxLength(50);
-            this.HasMany(c => c.Posts).WithRequired(s => s.User).HasForeignKey(c=>c.UserId);
+            this.HasMany(c => c.Posts).WithRequired(s => s.User).HasForeignKey(c=>c.UserId).WillCascadeOnDelete(false);
+            this.HasMany(c => c.Comments).WithRequired(s => s.User).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false);
         }
     }
 }

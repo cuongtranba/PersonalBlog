@@ -10,9 +10,9 @@ using DAL.Entities;
 
 namespace DomainLayer.Service
 {
-    public abstract class BaseService<TModel> where TModel : class
+    public abstract class BaseService<TModel> where TModel : BaseEntity
     {
-        protected DbContext DbContext;
+        private DbContext DbContext;
         protected DbSet<TModel> DbSet => DbContext.Set<TModel>();
 
 
@@ -21,19 +21,14 @@ namespace DomainLayer.Service
             this.DbContext = dbContext;
         }
 
-        public virtual TModel Create()
-        {
-            return DbSet.Create();
-        }
-
         public virtual void Create( TModel model )
         {
             DbSet.Add(model);
         }
 
-        public virtual TModel Retrieve(params object[] keys)
+        public virtual TModel Retrieve(int id)
         {
-            return DbSet.Find(keys);
+            return DbSet.FirstOrDefault(c => c.Id == id && c.IsDeleted == false);
         }
 
         public virtual void Update(TModel model)
@@ -45,14 +40,14 @@ namespace DomainLayer.Service
         {
             DbContext.Entry(model).State=EntityState.Deleted;
         }
-        public List<TModel> GetAll(Expression<Func<TModel, bool>> predicate, bool isTracking=true)
+        public List<TResult> GetAll<TResult>(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, TResult>> selector , bool isTracking=true) where TResult : class
         {
-            return isTracking? DbSet.Where(predicate).ToList(): DbSet.Where(predicate).AsNoTracking().ToList();
+            return isTracking? DbSet.Where(c=>c.IsDeleted==false).Where(predicate).Select(selector).ToList(): DbSet.Where(c => c.IsDeleted == false).Where(predicate).Select(selector).AsNoTracking().ToList();
         }
 
-        public List<TModel> GetAll(bool isTracking = true)
+        public List<TResult> GetAll<TResult>(Expression<Func<TModel, TResult>> selector,bool isTracking = true) where TResult:class 
         {
-            return isTracking ? DbSet.ToList() : DbSet.AsNoTracking().ToList();
+            return isTracking ? DbSet.Where(c => c.IsDeleted == false).Select(selector).ToList() : DbSet.Where(c => c.IsDeleted == false).Select(selector).AsNoTracking().ToList();
         } 
     }
 }
