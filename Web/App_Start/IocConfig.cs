@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Extras.DynamicProxy2;
 using Autofac.Integration.Mvc;
-using DomainLayer;
+using Web.Models;
+using Web.Models.Entity;
+using Web.Models.Model;
+using Web.Service;
+using Web.Service.Interface;
+
 namespace Web
 {
     public class IocConfig
@@ -32,8 +39,18 @@ namespace Web
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterModule(new DomainLayer.IocConfig());
 
+            // register dbcontext
+            builder.Register(c => new ApplicationDbContext()).As<DbContext>().InstancePerRequest();
+
+            //register service
+            var dataAccess = Assembly.GetExecutingAssembly();
+            builder.RegisterAssemblyTypes(dataAccess)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces();
+
+            builder.RegisterGeneric(typeof(PagingHandler<>)).As(typeof(IPagingHandler<>)).InstancePerRequest();
+            
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

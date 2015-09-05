@@ -1,4 +1,4 @@
-﻿@model Web.Models.CommentModel
+﻿@model Web.Models.Model.CommentModel
 
 
 @using (Html.BeginForm("CreateComment", "Post"))
@@ -8,7 +8,7 @@
         <h4>Leave a Comment:</h4>
         <form role="form">
             <div class="form-group">
-                @Html.TextAreaFor(c=>c.Content,new {@class="form-control",@rows="3"});
+                @Html.TextAreaFor(c=>c.Content,new {@class="form-control",@rows="3"})
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

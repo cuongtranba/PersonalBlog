@@ -86,21 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IocConfig.cs" />
-    <Compile Include="Service\BaseService.cs" />
-    <Compile Include="Service\CategoryService.cs" />
-    <Compile Include="Service\CommentService.cs" />
-    <Compile Include="Service\Interface\ICommentService.cs" />
-    <Compile Include="Service\Interface\ICategoryService.cs" />
-    <Compile Include="Service\Interface\IPostService.cs" />
-    <Compile Include="Service\Interface\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\PostService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{0f565d03-7ffe-44ef-8a11-d8b60efcc85c}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

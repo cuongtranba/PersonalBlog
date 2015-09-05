@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using DAL.Entities;
-using DomainLayer.Service;
-using DomainLayer.Service.Interface;
-using Web.Models;
+using Web.Models.Entity;
+using Web.Models.Model;
+using Web.Service.Interface;
+using Web.Utility;
 
 namespace Web.Controllers
 {
@@ -16,34 +15,46 @@ namespace Web.Controllers
     {
         private readonly IPostService _postService;
         private readonly ICommentService _commentService;
-        public PostController(DbContext dbContext, IPostService postService, ICommentService commentService) : base(dbContext)
+        private readonly IPagingHandler<Post> _pagingHandler;
+        public PostController(DbContext dbContext, IPostService postService, ICommentService commentService, IPagingHandler<Post> pagingHandler) : base(dbContext)
         {
             this._postService = postService;
             _commentService = commentService;
+            _pagingHandler = pagingHandler;
         }
 
 
-        public ActionResult List()
+        public ActionResult List(int? page)
         {
-            return View();
+            _pagingHandler.PageIndex = page ?? 1 ;
+           var model=_pagingHandler.GetPagingList(c => new PostModel()
+            {
+                Title = c.Title,
+                DateTime = c.DateTime,
+                ShortDescription = c.ShortDescription,
+                FullName = c.User.FirstName + " " + c.User.LastName,
+                Id = c.Id
+            },c=>c.DateTime,ListSortDirection.Descending);
+            
+            return View(model);
         }
 
 
         public ActionResult Detail(int id)
         {
-            var model = Mapper.Map(_postService.Retrieve(id), new PostModel());
-            return View(model);
+            return View(_postService.Retrieve(id));
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult CreateComment(CommentModel model)
         {
+            model.UserId = User.Identity.GetId();
             var comment = Mapper.Map(model, new Comment());
             if (ModelState.IsValid)
             {
                 _commentService.Create(comment);
             }
-            return RedirectToAction("Detail", new { id = comment.Post.Id });
+            return RedirectToAction("Detail", new { id = comment.PostId });
         }
         [ChildActionOnly]
         public ActionResult Comment(int postId)

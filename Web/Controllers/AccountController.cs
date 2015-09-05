@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Web.Models;
+using Web.Models.Model;
 
 namespace Web.Controllers
 {
@@ -403,6 +404,16 @@ namespace Web.Controllers
             return View();
         }
 
+        [ChildActionOnly]
+        public async Task<bool> IsUserExisted(string username)
+        {
+            if (await UserManager.IsUserExisted(username))
+            {
+                return false;
+            }
+            return true;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -481,5 +492,6 @@ namespace Web.Controllers
             }
         }
         #endregion
+        
     }
 }

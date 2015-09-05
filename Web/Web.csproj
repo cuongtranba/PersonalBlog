@@ -188,7 +188,29 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperBootStrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Migrations\201508230416378_InitialCreate.cs" />
+    <Compile Include="Migrations\201508230416378_InitialCreate.Designer.cs">
+      <DependentUpon>201508230416378_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508231114342_init.cs" />
+    <Compile Include="Migrations\201508231114342_init.Designer.cs">
+      <DependentUpon>201508231114342_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entity\BaseEntity.cs" />
+    <Compile Include="Models\Entity\Category.cs" />
+    <Compile Include="Models\Entity\Comment.cs" />
+    <Compile Include="Models\Entity\Image.cs" />
+    <Compile Include="Models\Entity\Post.cs" />
+    <Compile Include="Models\Entity\Tag.cs" />
+    <Compile Include="Models\Entity\User.cs" />
+    <Compile Include="Models\Map\CategoryConfiguration.cs" />
+    <Compile Include="Models\Map\CommentConfiguration.cs" />
+    <Compile Include="Models\Map\ImageConfiguration.cs" />
+    <Compile Include="Models\Map\PostConfiguration.cs" />
+    <Compile Include="Models\Map\TagEntityConfiguration.cs" />
+    <Compile Include="Models\Map\UserEntityConfiguration.cs" />
+    <Compile Include="Models\Model\CommentModel.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\IocConfig.cs" />
@@ -205,17 +227,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\CategoryModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ImageModel.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PostModel.cs" />
-    <Compile Include="Models\TagModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\Model\AccountViewModels.cs" />
+    <Compile Include="Models\Model\BaseModel.cs" />
+    <Compile Include="Models\Model\CategoryModel.cs" />
+    <Compile Include="Models\Model\IdentityModels.cs" />
+    <Compile Include="Models\Model\ImageModel.cs" />
+    <Compile Include="Models\Model\ManageViewModels.cs" />
+    <Compile Include="Models\Model\PostModel.cs" />
+    <Compile Include="Models\Model\TagModel.cs" />
+    <Compile Include="Models\Model\UserModel.cs" />
+    <Compile Include="Models\Model\PagingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\CommentService.cs" />
+    <Compile Include="Service\Interface\ICategoryService.cs" />
+    <Compile Include="Service\Interface\ICommentService.cs" />
+    <Compile Include="Service\Interface\IPagingHandler.cs" />
+    <Compile Include="Service\Interface\IPostService.cs" />
+    <Compile Include="Service\Interface\IService.cs" />
+    <Compile Include="Service\PostService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\HtmlHelperExtentions.cs" />
+    <Compile Include="Utility\IdentityExtensions.cs" />
+    <Compile Include="Service\PagingHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\blog-post.css" />
@@ -301,14 +336,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{0F565D03-7FFE-44EF-8A11-D8B60EFCC85C}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">
-      <Project>{71690c38-e5b4-4ce8-a1bb-ec435d3e7b6c}</Project>
-      <Name>DomainLayer</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201508230416378_InitialCreate.resx">
+      <DependentUpon>201508230416378_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508231114342_init.resx">
+      <DependentUpon>201508231114342_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

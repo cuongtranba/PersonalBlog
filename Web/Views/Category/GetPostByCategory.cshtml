@@ -1,4 +1,4 @@
-﻿@model List<DAL.Entities.Post>
+﻿@model List<Web.Models.Entity.Post>
 
 @{
     ViewBag.Title = Model[0].Category.Name;
@@ -10,7 +10,7 @@
         <a href="#">@post.Title</a>
     </h2>
     <p class="lead">
-        by <a href="index.php">@post.User.Name</a>
+        by <a href="index.php">@post.User.FullName</a>
     </p>
     <p><span class="glyphicon glyphicon-time"></span> Posted on @post.DateTime.ToShortTimeString()</p>
     <hr>

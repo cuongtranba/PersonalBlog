@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using AutoMapper;
 using DAL.Entities;
-using Web.Models;
-using DomainLayer;
-using DomainLayer.Service;
-using DomainLayer.Service.Interface;
-using Microsoft.Ajax.Utilities;
+using Web.Models.Entity;
+using Web.Models.Model;
+using Web.Service.Interface;
 
 namespace Web.Controllers
 {

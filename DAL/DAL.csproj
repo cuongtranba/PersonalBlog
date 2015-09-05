@@ -101,21 +101,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlogContext.cs" />
-    <Compile Include="Config\CategoryConfiguration.cs" />
-    <Compile Include="Config\CommentConfiguration.cs" />
-    <Compile Include="Entities\Comment.cs" />
-    <Compile Include="Config\ImageConfiguration.cs" />
-    <Compile Include="Config\PostConfiguration.cs" />
-    <Compile Include="Config\TagEntityConfiguration.cs" />
-    <Compile Include="Config\UserEntityConfiguration.cs" />
-    <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Image.cs" />
-    <Compile Include="Entities\Post.cs" />
-    <Compile Include="Entities\Tag.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="IocConfig.cs" />
     <Compile Include="Migrations\201508171409447_init 121.cs" />
     <Compile Include="Migrations\201508171409447_init 121.Designer.cs">
       <DependentUpon>201508171409447_init 121.cs</DependentUpon>
@@ -138,6 +123,10 @@
     <EmbeddedResource Include="Migrations\201508181436195_test100.resx">
       <DependentUpon>201508181436195_test100.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />

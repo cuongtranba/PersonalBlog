@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="/Post/List">Start Bootstrap</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,12 +37,30 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post,new {id= "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                }
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li> <a href="#">Hello! @User.Identity.Name</a> </li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/Account/Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    }
+                </ul>
+                
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
 <!--container-->
     <!-- Page Content -->
     <div class="container">

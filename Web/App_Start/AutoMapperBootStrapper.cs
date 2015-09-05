@@ -2,6 +2,8 @@
 using AutoMapper;
 using DAL.Entities;
 using Web.Models;
+using Web.Models.Entity;
+using Web.Models.Model;
 
 namespace Web
 {
@@ -11,7 +13,7 @@ namespace Web
         {
             Mapper.CreateMap<Category, CategoryModel>().ReverseMap();
             Mapper.CreateMap<Post, PostModel>().ReverseMap();
-            Mapper.CreateMap<User, UserModel>().ReverseMap();
+            Mapper.CreateMap<ApplicationSignInManager, UserModel>().ReverseMap();
             Mapper.CreateMap<Comment, CommentModel>().ReverseMap();
             Mapper.CreateMap<Tag, TagModel>().ReverseMap();
             Mapper.CreateMap<Image, ImageModel>().ReverseMap();

@@ -1,4 +1,4 @@
-﻿@model Web.Models.PostModel
+﻿@model Web.Models.Entity.Post
 
 
 <!-- Blog Post -->
@@ -6,7 +6,7 @@
 <h1>@Model.Title</h1>
 <!-- Author -->
 <p class="lead">
-    by <a href="#">@Model.User.Name</a>
+    by <a href="#">@Model.User.UserName</a>
 </p>
 <hr>
 <!-- Date/Time -->
@@ -23,8 +23,15 @@
 <!-- Blog Comments -->
 <!-- Comments Form -->
 
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.Action("Comment", "Post", new { postId = Model.Id })
+}
+else
+{
+    @Html.ActionLink("Login to comment","Login","Account",new { @returnUrl = Request.Url.AbsolutePath },new {@class= "btn btn-default" })
+}
 
-@Html.Action("Comment","Post",new {postId=Model.Id})
 
 <hr>
 <!-- Posted Comments -->
@@ -32,12 +39,9 @@
 @foreach (var comment in Model.Comments)
 {
     <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
         <div class="media-body">
             <h4 class="media-heading">
-                @comment.User.Name
+                @comment.User.UserName
                 <small>@comment.DateTime</small>
             </h4>
             @comment.Content

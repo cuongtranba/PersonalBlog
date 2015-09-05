@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Web.Mvc;
-using DomainLayer.Service.Interface;
+using Web.Service.Interface;
 
 namespace Web.Controllers
 {
