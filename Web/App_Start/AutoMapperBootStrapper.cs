@@ -4,6 +4,8 @@ using DAL.Entities;
 using Web.Models;
 using Web.Models.Entity;
 using Web.Models.Model;
+using Web.Service;
+using Web.Service.Interface;
 
 namespace Web
 {
@@ -17,6 +19,8 @@ namespace Web
             Mapper.CreateMap<Comment, CommentModel>().ReverseMap();
             Mapper.CreateMap<Tag, TagModel>().ReverseMap();
             Mapper.CreateMap<Image, ImageModel>().ReverseMap();
+
+            //Mapper.CreateMap<IPagingHandler<BaseEntity>, PagingModel>();
         }
     }
 

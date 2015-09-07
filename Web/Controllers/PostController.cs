@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -27,15 +29,29 @@ namespace Web.Controllers
         public ActionResult List(int? page)
         {
             _pagingHandler.PageIndex = page ?? 1 ;
-           var model=_pagingHandler.GetPagingList(c => new PostModel()
+           var postList=_pagingHandler.GetPagingList(c => new PostModel()
             {
                 Title = c.Title,
                 DateTime = c.DateTime,
                 ShortDescription = c.ShortDescription,
                 FullName = c.User.FirstName + " " + c.User.LastName,
                 Id = c.Id
-            },c=>c.DateTime,ListSortDirection.Descending);
+            },c=>c.DateTime,ListSortDirection.Descending).ToList();
+
+            var pagingModel = new PagingModel()
+            {
+                HasNextPage = _pagingHandler.HasNextPage,
+                HasPreviousPage = _pagingHandler.HasPreviousPage,
+                PageIndex = _pagingHandler.PageIndex,
+                IsFirstPage = _pagingHandler.IsFirstPage,
+                IsLastPage = _pagingHandler.IsLastPage,
+                PageCount = _pagingHandler.PageCount,
+                PageNumber = _pagingHandler.PageNumber,
+                PageSize = _pagingHandler.PageSize
+            };
             
+            var model=new Tuple<List<PostModel>,PagingModel>(postList, pagingModel);
+
             return View(model);
         }
 
