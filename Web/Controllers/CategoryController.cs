@@ -1,4 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using DAL.Entities;
@@ -11,9 +15,11 @@ namespace Web.Controllers
     public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
-        public CategoryController(DbContext dbContext, ICategoryService categoryService) : base(dbContext)
+        private readonly IPagingHandler<Post> _pagingHandler;
+        public CategoryController(DbContext dbContext, ICategoryService categoryService, IPagingHandler<Post> pagingHandler) : base(dbContext)
         {
             this._categoryService = categoryService;
+            _pagingHandler = pagingHandler;
         }
 
         // GET: Category
@@ -42,9 +48,32 @@ namespace Web.Controllers
             return PartialView("GetCategoies",categoies);
         }
 
-        public ActionResult GetPostByCategory(int id)
+        public ActionResult GetPostByCategory(int id,int ?page)
         {
-            return View(_categoryService.GetPostByCategory(id));
+            _pagingHandler.PageIndex = page ?? 1;
+            var postList = _pagingHandler.GetPagingList(c=>c.CategoryId==id,c => new PostModel()
+            {
+                Title = c.Title,
+                DateTime = c.DateTime,
+                ShortDescription = c.ShortDescription,
+                FullName = c.User.FirstName + " " + c.User.LastName,
+                Id = c.Id
+            }, c => c.DateTime, ListSortDirection.Descending).ToList();
+
+            var pagingModel = new PagingModel()
+            {
+                HasNextPage = _pagingHandler.HasNextPage,
+                HasPreviousPage = _pagingHandler.HasPreviousPage,
+                PageIndex = _pagingHandler.PageIndex,
+                IsFirstPage = _pagingHandler.IsFirstPage,
+                IsLastPage = _pagingHandler.IsLastPage,
+                PageCount = _pagingHandler.PageCount,
+                PageNumber = _pagingHandler.PageNumber,
+                PageSize = _pagingHandler.PageSize
+            };
+
+            var model = new Tuple<List<PostModel>, PagingModel>(postList, pagingModel);
+            return View("_ListPost", model);
         }
     }
 }

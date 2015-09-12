@@ -51,8 +51,7 @@ namespace Web.Controllers
             };
             
             var model=new Tuple<List<PostModel>,PagingModel>(postList, pagingModel);
-
-            return View(model);
+            return View("_ListPost",model);
         }
 
 

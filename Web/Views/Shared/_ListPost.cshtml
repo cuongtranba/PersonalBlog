@@ -1,0 +1,35 @@
+﻿@using Web.Models.Model
+@using Web.Utility
+@model Tuple<List<PostModel>, PagingModel>
+
+
+@foreach (var post in Model.Item1)
+{
+    <h2>
+        <a href="#">@post.Title</a>
+    </h2>
+    <p class="lead">
+        by <a href="/post/list">@post.FullName</a>
+    </p>
+    <p><span class="glyphicon glyphicon-time"></span> Posted on @post.DateTime.ToShortTimeString()</p>
+    <hr>
+        //<img class="img-responsive" src="@post.Image" alt="">
+    <hr>
+    <p>@post.ShortDescription</p>
+    <a class="btn btn-primary" href="/post/detail/@post.Id">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+    <hr>
+}
+    <!-- Pager -->
+@*<ul class="pager">
+    <li class="previous">
+        <a href="#">&larr; Older</a>
+    </li>
+    <li class="next">
+        <a href="#">Newer &rarr;</a>
+    </li>
+</ul>*@
+@Html.PagingHelper(Model.Item2.PageIndex, Model.Item2)
+
+
+
+

@@ -317,7 +317,7 @@
     <Content Include="Views\Comment\_GetRecentComments.cshtml" />
     <None Include="Views\Post\Comment.cshtml" />
     <None Include="Views\Post\Detail.cshtml" />
-    <Content Include="Views\Post\List.cshtml" />
+    <Content Include="Views\Shared\_ListPost.cshtml" />
     <None Include="Views\Shared\_Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
